@@ -1,0 +1,105 @@
+/* Task Timer Styles */
+.task-timer-display {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.task-timer-display .timer-value {
+    font-family: monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* Navbar Task Indicator Styles */
+.task-indicator {
+    position: relative;
+    margin-right: 15px;
+}
+
+.task-indicator .dropdown-toggle {
+    padding: 15px;
+    color: #6c7680;
+    display: flex;
+    align-items: center;
+}
+
+.task-indicator .dropdown-toggle:hover {
+    color: #36414c;
+    text-decoration: none;
+}
+
+.task-indicator .task-timer {
+    font-family: monospace;
+    font-size: 0.9em;
+    margin-left: 8px;
+    color: #2e7d32;
+}
+
+.task-indicator .dropdown-menu {
+    min-width: 200px;
+    padding: 8px 0;
+}
+
+.task-indicator .task-info {
+    padding: 8px 15px;
+    white-space: normal;
+    border-bottom: 1px solid #e5e7e9;
+}
+
+.task-indicator .task-info a {
+    color: #36414c;
+    text-decoration: none;
+}
+
+.task-indicator .task-info a:hover {
+    color: #2e7d32;
+}
+
+.task-indicator .divider {
+    height: 1px;
+    margin: 8px 0;
+    background-color: #e5e7e9;
+}
+
+.task-indicator .stop-task,
+.task-indicator .complete-task {
+    padding: 8px 15px;
+    color: #36414c;
+    text-decoration: none;
+    display: block;
+}
+
+.task-indicator .stop-task:hover,
+.task-indicator .complete-task:hover {
+    background-color: #f8f9fa;
+    color: #2e7d32;
+}
+
+/* Active state for task indicator */
+.task-indicator.active .dropdown-toggle {
+    color: #2e7d32;
+}
+
+/* Button styles in task form */
+.btn-timer {
+    margin-right: 5px;
+}
+
+.btn-timer.btn-success {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-timer.btn-danger {
+    background-color: #c62828;
+    border-color: #c62828;
+}
+
+.btn-timer.btn-primary {
+    background-color: #1565c0;
+    border-color: #1565c0;
+} 
