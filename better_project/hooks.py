@@ -8,7 +8,7 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -25,12 +25,26 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/better_project/css/better_project.css"
-# app_include_js = "/assets/better_project/js/better_project.js"
+app_include_css = [
+    "/assets/better_project/css/better_project.css"
+]
+
+app_include_js = [
+    "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js",
+    "/assets/better_project/js/task_timer_client.js",
+    "/assets/better_project/js/navbar_timer.js"
+]
 
 # include js, css files in header of web template
-# web_include_css = "/assets/better_project/css/better_project.css"
-# web_include_js = "/assets/better_project/js/better_project.js"
+web_include_css = [
+    "/assets/better_project/css/better_project.css"
+]
+
+web_include_js = [
+    "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js",
+    "/assets/better_project/js/task_timer_client.js",
+    "/assets/better_project/js/navbar_timer.js"
+]
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "better_project/public/scss/website"
@@ -40,10 +54,25 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+page_js = {
+    "navbar_timer": "better_project/public/js/navbar_timer.js"
+}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Task": "better_project/doctype/task/task.js"
+}
+
+# include js in workspace
+workspace_js = {
+    "navbar_timer": "better_project/public/js/navbar_timer.js"
+}
+
+# include js in desk
+desk_js = {
+    "navbar_timer": "better_project/public/js/navbar_timer.js"
+}
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -111,7 +140,7 @@ app_license = "mit"
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "better_project.notifications.get_notification_config"
+notification_config = "better_project.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -119,10 +148,6 @@ app_license = "mit"
 
 # permission_query_conditions = {
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
 # DocType Class
@@ -137,13 +162,13 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Task": {
+        "on_update": "better_project.doctype.task.task.on_task_update",
+        "on_trash": "better_project.doctype.task.task.on_task_trash",
+        "validate": "better_project.doctype.task.task.validate_task"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -173,11 +198,10 @@ app_license = "mit"
 
 # Overriding Methods
 # ------------------------------
-#
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "better_project.event.get_events"
-# }
-#
+override_whitelisted_methods = {
+    "frappe.desk.doctype.task.task.get_task_list": "better_project.doctype.task.task.get_task_list"
+}
+
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
