@@ -911,7 +911,8 @@ def get_my_daily_project_time_data():
         today = getdate()
         week_ago = today - timedelta(days=6)
         
-        frappe.log_error(f"Fetching daily project time data for employee: {employee}, dates: {week_ago} to {today}", "get_my_daily_project_time_data")
+        # Log only the date range, not the full data
+        frappe.log_error(f"Fetching daily project time data for employee: {employee}, date range: {week_ago} to {today}", "get_my_daily_project_time_data")
 
         time_data = frappe.db.sql("""
             SELECT
@@ -932,7 +933,8 @@ def get_my_daily_project_time_data():
             ORDER BY work_date ASC, t.project ASC
         """, (user, week_ago, today), as_dict=1)
         
-        frappe.log_error(f"Raw time data fetched: {time_data}", "get_my_daily_project_time_data")
+        # Log only the count of records found
+        frappe.log_error(f"Found {len(time_data)} time records for employee {employee}", "get_my_daily_project_time_data")
 
         # Convert hours to float and add default color if missing
         for item in time_data:
@@ -941,7 +943,6 @@ def get_my_daily_project_time_data():
                 # Assign a random color (or a predefined fallback) if project has no color
                 item['color'] = '#' + '%06x' % random.randint(0, 0xFFFFFF)
 
-        frappe.log_error(f"Processed time data returning: {time_data}", "get_my_daily_project_time_data")
         return time_data
 
     except Exception as e:
